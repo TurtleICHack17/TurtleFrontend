@@ -21,6 +21,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Index}></IndexRoute>
+        <Route path="/stack" component={Stack}></Route>
         <Route path="/record" component={RecordingPage}></Route>
       </Route>
     </Router>
