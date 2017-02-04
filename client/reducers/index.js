@@ -1,9 +1,9 @@
 
 import { routerReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
-import todos from './todos'
+import login from './login'
 
 export default combineReducers({
   routing,
-  todos
+  login
 })
