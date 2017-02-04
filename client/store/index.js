@@ -10,16 +10,14 @@ export default function configure(initialState) {
     ? window.devToolsExtension()(createStore)
     : createStore
 
-  const createStoreWithMiddleware = applyMiddleware(
-    logger
-  )(create)
-
-  const store = createStoreWithMiddleware(
-    rootReducer, initialState,
-    autoRehydrate()
+  const store = create(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(logger),
+      autoRehydrate()
+    )
   )
-
-  persistStore(store)
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
@@ -27,6 +25,7 @@ export default function configure(initialState) {
       store.replaceReducer(nextReducer)
     })
   }
-
+  
+  persistStore(store)
   return store
 }

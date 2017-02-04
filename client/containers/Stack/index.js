@@ -36,7 +36,8 @@ class Stack extends Component {
         appendCards(data.map((item) => {
           return {
             name: item.name || 'UNKNOWN_NAME',
-            picture: "http://graph.facebook.com/" + (item.fbUserId || '') + "/picture"
+            picture: "http://graph.facebook.com/" + (item.fbUserId || '') + "/picture",
+            fbUserId: item.fbUserId
         }})
       )
       this.forceUpdate()
@@ -44,11 +45,27 @@ class Stack extends Component {
   }
 
 
-  handleLeftSwipe(card) {
-    console.log(card);
+  handleLeftSwipe(ourUserId, card) {
+    fetch('http://129.31.231.107:9000/api/turtle_users/' + ourUserId + '/swipeleft/' + card.fbUserId,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: "{}"
+      })
   }
 
-  handleRightSwipe(card) {
+  handleRightSwipe(ourUserId, card) {
+    fetch('http://129.31.231.107:9000/api/turtle_users/' + ourUserId + '/swiperight/' + card.fbUserId,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: "{}"
+      })
+
     browserHistory.push('/record')
   }
 
@@ -86,8 +103,8 @@ class Stack extends Component {
             width={swipeWidth}
             height={swipeHeight}
             cards={cards}
-            onLeftSwipe={(card) => this.handleLeftSwipe(cards[card])}
-            onRightSwipe={(card) => this.handleRightSwipe(cards[card]) }
+            onLeftSwipe={(card) => this.handleLeftSwipe(login.fbObject.userID, cards[card])}
+            onRightSwipe={(card) => this.handleRightSwipe(login.fbObject.userID, cards[card]) }
             />
         </div>
 
