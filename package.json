@@ -43,6 +43,7 @@
     "lodash": "^4.17.4",
     "material-ui": "^0.16.7",
     "react-facebook-login": "^3.4.3",
+    "react-html5video": "^1.4.0",
     "react-tap-event-plugin": "^2.0.1",
     "recordrtc": "^5.4.0",
     "redux-persist": "^4.1.1",

@@ -1,15 +1,11 @@
-#myVideo {
-    background-color: #E8E884;
+.main {
+  text-align: center;
 }
-/* place fullscreen control on right side of the player */
-.video-js .vjs-control.vjs-fullscreen-control {
-    position: absolute;
-    right: 0;
+.inline {
+  display: inline;
+  margin: 1em;
 }
 
-/* make sure the custom controls are always visible because
-   the plugin hides and replace the video.js native mobile
-   controls */
-.vjs-using-native-controls .vjs-control-bar {
-    display: flex !important;
+.padding {
+  margin: 1em;
 }

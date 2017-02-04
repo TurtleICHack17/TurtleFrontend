@@ -9,6 +9,7 @@ import React from 'react'
 import App from './containers/App'
 import Index from './containers/Index'
 import RecordingPage from './components/RecordingPage/index'
+import VideoPage from './components/VideoPage/index'
 import Stack from './containers/Stack'
 import configure from './store'
 
@@ -23,6 +24,7 @@ ReactDOM.render(
         <IndexRoute component={Index}></IndexRoute>
         <Route path="/stack" component={Stack}></Route>
         <Route path="/record" component={RecordingPage}></Route>
+        <Route path="/video/:videoId" component={VideoPage}></Route>
       </Route>
     </Router>
   </Provider>
