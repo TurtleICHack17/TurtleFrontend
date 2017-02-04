@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import {Router} from 'react-router'
 import 'whatwg-fetch'
 
 
@@ -20,6 +21,7 @@ export function facebookOnResponse(response) {
       })
     }).then((res) => console.log(res))
 
+    Router.browserHistory.push('/stack')
     return {
         type: 'set facebook success',
         fbObject: response
