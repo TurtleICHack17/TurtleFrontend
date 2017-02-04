@@ -7,7 +7,7 @@ export default function loginReducer(state=initialState, action) {
       break;
 
     default:
-      return initialState
+      return state
   }
 
 }
