@@ -13,6 +13,7 @@ export default React.createClass({
 
   getInitialState() {
     return {
+      loading: false,
       cards: this.props.cards.slice()
     };
   },
@@ -22,7 +23,12 @@ export default React.createClass({
     this.setState({
       cards: this.state.cards
     });
-    console.log(this.props)
+
+    if (this.state.cards.length < 4 && this.state.cards.length > 0 && !this.state.loading && this.props.onRunnout) {
+      this.setState({loading: true})
+      this.onRunnout()
+    }
+
     if (like && this.props.onRightSwipe) {
       this.props.onRightSwipe(card)
     }
@@ -47,7 +53,9 @@ export default React.createClass({
         marginTop: '50%',
         fontSize: '30px',
         color: '#555'
-      }}>No cards left!</p>
+      }}>
+      {this.state.loading?<span>Loading..</span>:<span>No cards left!</span>}
+    </p>
     </div>;
   },
 

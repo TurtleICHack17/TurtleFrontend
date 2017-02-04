@@ -1,5 +1,6 @@
 
-import { createStore, applyMiddleware } from 'redux'
+import {compose, createStore, applyMiddleware } from 'redux'
+import {persistStore, autoRehydrate} from 'redux-persist'
 
 import { logger } from '../middleware'
 import rootReducer from '../reducers'
@@ -9,11 +10,14 @@ export default function configure(initialState) {
     ? window.devToolsExtension()(createStore)
     : createStore
 
-  const createStoreWithMiddleware = applyMiddleware(
-    logger
-  )(create)
-
-  const store = createStoreWithMiddleware(rootReducer, initialState)
+  const store = create(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(logger),
+      autoRehydrate()
+    )
+  )
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
@@ -21,6 +25,7 @@ export default function configure(initialState) {
       store.replaceReducer(nextReducer)
     })
   }
-
+  
+  persistStore(store)
   return store
 }

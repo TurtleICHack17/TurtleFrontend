@@ -6,7 +6,7 @@ class Header extends Component {
 
   render() {
     return (
-        <h1>{this.props.children}</h1>
+        <h1 className={this.props.className}>{this.props.children}</h1>
     )
   }
 }

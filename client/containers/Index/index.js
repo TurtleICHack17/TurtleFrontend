@@ -16,18 +16,18 @@ class Index extends Component {
     return (
       <div className={style.indexPage}>
         <div>
-          <img src='../../constants/turtle_logo.png' className={style.logo}></img>
+          <div className={style.logo}></div>
         </div>
-        <Header>Lets make this happen!</Header>
+        <Header className={style.intro}>Let's do this!</Header>
 
           <FacebookLogin
             appId="1272020392851220"
-            autoLoad={true}
+            autoLoad={false}
             fields="name,email,picture,gender"
             callback={(response) => actions.facebookOnResponse(response)} />
 
           {login.failed ?
-            <Alert type='error'>Login failed</Alert>: null
+            <div className={style.loginInfo}>Could not log in automatically</div>: null
         }
 
       </div>

@@ -19,7 +19,9 @@ export function facebookOnResponse(response) {
         fbUserId: response.userID,
         gender: response.gender || 'UNKNOWN_GENDER'
       })
-    }).then((res) => console.log(res))
+    }).then(
+    //  (res) => console.log(res)
+    )
     browserHistory.push('/stack')
     return {
         type: 'set facebook success',
