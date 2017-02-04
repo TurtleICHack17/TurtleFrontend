@@ -72,22 +72,17 @@ class Stack extends Component {
   render() {
 
     const { actions, children, login, cards } = this.props
+    const ourUserId = login.fbObject ? login.fbObject.userID : null
     if(login.loggedIn) {
       console.log('user available')
       if (cards.length == 0) {
-        this.loadCards(login.fbObject.userID, actions.appendCards)
+        this.loadCards(ourUserId, actions.appendCards)
       }
     }
     else {
       console.log('user unavailable')
     }
-
-
-    const cardos = [ {
-      name: 'Heiki',
-      age: 22,
-      picture: 'https://s-media-cache-ak0.pinimg.com/736x/ff/2e/54/ff2e54f2ca5c09a877fb04d84bc562a4.jpg'
-    }]
+    console.log('OURUSERID: ' + ourUserId)
     const swipeHeight = window.innerHeight-80
     const swipeWidth = swipeHeight*0.6
     console.log(cards)
@@ -103,8 +98,8 @@ class Stack extends Component {
             width={swipeWidth}
             height={swipeHeight}
             cards={cards}
-            onLeftSwipe={(card) => this.handleLeftSwipe(login.fbObject.userID, cards[card])}
-            onRightSwipe={(card) => this.handleRightSwipe(login.fbObject.userID, cards[card]) }
+            onLeftSwipe={(card) => this.handleLeftSwipe(ourUserId, cards[card])}
+            onRightSwipe={(card) => this.handleRightSwipe(ourUserId, cards[card]) }
             />
         </div>
 

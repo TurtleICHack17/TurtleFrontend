@@ -1,6 +1,5 @@
 
 import {compose, createStore, applyMiddleware } from 'redux'
-import {persistStore, autoRehydrate} from 'redux-persist'
 
 import { logger } from '../middleware'
 import rootReducer from '../reducers'
@@ -15,7 +14,6 @@ export default function configure(initialState) {
     initialState,
     compose(
       applyMiddleware(logger),
-      autoRehydrate()
     )
   )
 
@@ -25,7 +23,6 @@ export default function configure(initialState) {
       store.replaceReducer(nextReducer)
     })
   }
-  
-  persistStore(store)
+
   return store
 }
