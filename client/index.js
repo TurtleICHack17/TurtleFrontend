@@ -9,6 +9,7 @@ import React from 'react'
 import App from './containers/App'
 import Index from './containers/Index'
 import RecordingPage from './components/RecordingPage/index'
+import Stack from './containers/Stack'
 import configure from './store'
 
 const store = configure()

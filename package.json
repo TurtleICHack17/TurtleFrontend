@@ -2,7 +2,7 @@
   "name": "frontend-boilerplate",
   "version": "1.0.0",
   "private": true,
-  "description": "A boilerplate of things that shouldn't exist",
+  "description": "turtle - next gen dating",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -38,11 +38,13 @@
     "webpack-hot-middleware": "^2.7.1"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "fs": "0.0.1-security",
     "lodash": "^4.17.4",
     "material-ui": "^0.16.7",
     "react-facebook-login": "^3.4.3",
     "react-tap-event-plugin": "^2.0.1",
-    "recordrtc": "^5.4.0"
+    "recordrtc": "^5.4.0",
+    "whatwg-fetch": "^2.0.2"
   }
 }
