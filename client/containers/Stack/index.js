@@ -5,25 +5,42 @@ import Header from '../../components/Header'
 import MainSection from '../../components/MainSection'
 import * as LoginActions from '../../actions/login'
 import style from './style.css'
-
+import 'whatwg-fetch'
 import SwipeCards from '../../components/SwipeCards';
+import AppBar from 'material-ui/AppBar';
 
 
 class Stack extends Component {
+
+  componentWillMount() {
+    console.log('fetch data')
+  }
+
   render() {
     const { actions, children, login } = this.props
 
     const cards = [ {
       name: 'Heiki',
       age: 22,
-      picture: 'https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-1/c0.0.320.320/p320x320/10559740_488116074658948_2372251737236126104_n.jpg?oh=82dda1a14320289de21e5313d877a480&oe=58FD426E'
+      picture: 'https://s-media-cache-ak0.pinimg.com/736x/ff/2e/54/ff2e54f2ca5c09a877fb04d84bc562a4.jpg'
     }]
-
+    const swipeHeight = window.innerHeight-80
+    const swipeWidth = swipeHeight*0.6
     return (
-      <div className={style.normal}>
-        <Header>Stack</Header>
+      <div className={style.page}>
+        <AppBar
+            title="turtle."
+          />
 
-        <SwipeCards width={300} height={500} cards={cards} onLeftSwipe={(card) => console.log('swiped left')} onRightSwipe={(card) => console.log('swiped right')}/>
+        <div className={style.stackContainer} style={{width: swipeWidth, height: swipeHeight}}>
+          <SwipeCards
+            width={swipeWidth}
+            height={swipeHeight}
+            cards={cards}
+            onLeftSwipe={(card) => console.log('swiped left')}
+            onRightSwipe={(card) => console.log('swiped right')}
+            />
+        </div>
 
       </div>
     )

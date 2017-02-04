@@ -14,8 +14,11 @@ class Index extends Component {
     const { actions, children, login } = this.props
 
     return (
-      <div className={style.normal}>
-        <Header>turtle. Lets make this happen!</Header>
+      <div className={style.indexPage}>
+        <div>
+          <img src='../../constants/turtle_logo.png' className={style.logo}></img>
+        </div>
+        <Header>Lets make this happen!</Header>
 
           <FacebookLogin
             appId="1272020392851220"
