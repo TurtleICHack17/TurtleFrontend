@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     const { todos, actions, children } = this.props
     return (
-      <div className={style.normal}>
+      <div className={style.normal} style={{height: '100%'}}>
         {this.props.children}
       </div>
     )

@@ -30,6 +30,7 @@ class Stack extends Component {
       <div className={style.page}>
         <AppBar
             title="turtle."
+            showMenuIconButton={false}
           />
 
         <div className={style.stackContainer} style={{width: swipeWidth, height: swipeHeight}}>
