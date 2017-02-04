@@ -13,11 +13,13 @@ export function captureUserMedia(callback) {
 };
 
 export function S3Upload(fileInfo) { //parameters: { type, data, id }
-  console.log("posted");
+  const postUrl = `http://129.31.231.107:9000/api/turtle_users/${fileInfo.currentUserId}/video/${fileInfo.matchUserId}`;
+  const postData = new FormData();
+  postData.append('myVideoFile', fileInfo.data);
   return new Promise((resolve, reject) => {
-    fetch('/video', {
+    fetch(postUrl, {
       method: 'POST',
-      body: new FormData(fileInfo.data)
+      body: postData
     })
     .then((res) => {
       resolve(res);
