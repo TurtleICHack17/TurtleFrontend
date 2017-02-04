@@ -36,8 +36,8 @@ export default React.createClass({
       backgroundColor: '#ccc',
       height: `${this.props.height}px`,
       width: `${this.props.width}px`,
-      border: '2px #aaa solid',
-      borderRadius: '10px',
+    //  border: '2px #aaa solid',
+      borderRadius: '2px',
       position: 'absolute',
       zIndex: -1
     }}>
@@ -95,7 +95,7 @@ export const Card = React.createClass({
     return {
       height: `${this.props.height}px`,
       width: `${this.props.width}px`,
-      borderRadius: '10px',
+      borderRadius: '2px',
       border: '1px #ccc solid',
       backgroundClip: 'content-box',
       position: 'absolute',
@@ -117,8 +117,8 @@ export const Card = React.createClass({
       backgroundSize: 'auto 100%',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center top',
-      borderTopLeftRadius: '9px', // Needed for border
-      borderTopRightRadius: '9px', // Needed for border
+      borderTopLeftRadius: '2px', // Needed for border
+      borderTopRightRadius: '2px', // Needed for border
       backgroundColor: '#ccc' // Blank background
     }
   },
