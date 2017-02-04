@@ -8,6 +8,7 @@ import React from 'react'
 
 import App from './containers/App'
 import Index from './containers/Index'
+import RecordingPage from './components/RecordingPage/index'
 import configure from './store'
 
 const store = configure()
@@ -19,6 +20,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Index}></IndexRoute>
+        <Route path="/record" component={RecordingPage}></Route>
       </Route>
     </Router>
   </Provider>
