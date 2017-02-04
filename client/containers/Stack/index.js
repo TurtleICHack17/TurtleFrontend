@@ -19,6 +19,16 @@ class Stack extends Component {
   componentWillMount() {
   }
 
+  guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
   loadCards(userID, appendCards) {
     fetch('http://129.31.231.107:9000/api/turtle_users/' + userID + '/current').then(function(response) {
         return response.json()
@@ -29,6 +39,7 @@ class Stack extends Component {
             picture: "http://graph.facebook.com/" + (item.fbUserId || '') + "/picture"
         }})
       )
+      this.forceUpdate()
     })
   }
 
@@ -38,7 +49,7 @@ class Stack extends Component {
   }
 
   handleRightSwipe(card) {
-    console.log(card)
+    browserHistory.push('/record')
   }
 
   render() {
@@ -64,7 +75,7 @@ class Stack extends Component {
     const swipeWidth = swipeHeight*0.6
     console.log(cards)
     return (
-      <div className={style.page}>
+      <div className={style.page} key={this.guid()}>
         <AppBar
             title="turtle."
             showMenuIconButton={false}
