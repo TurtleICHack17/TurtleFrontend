@@ -7,13 +7,18 @@ export function facebookOnResponse(response) {
   if (response.hasOwnProperty('userID')) {
 
     // send facebook object to our API
-    fetch('/login', {
+    fetch('http://129.31.231.107:9000/api/turtle_users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(response)
-    })
+      body: JSON.stringify({
+        email: response.email || 'UNKNOWN_MAIL',
+        name: response.name || 'UNKNOWN_NAME',
+        fbUserId: response.userID,
+        gender: response.gender || 'UNKNOWN_GENDER'
+      })
+    }).then((res) => console.log(res))
 
     return {
         type: 'set facebook success',
