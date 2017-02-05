@@ -1,16 +1,5 @@
 import React, {Component} from 'react'
 import style from './style.css'
-import css from '../../../node_modules/react-html5video/dist/ReactHtml5Video.css'
-import {
-  default as Video,
-  Controls,
-  Play,
-  Mute,
-  Seek,
-  Fullscreen,
-  Time,
-  Overlay
-} from 'react-html5video';
 
 class MatchPage extends Component {
   render() {

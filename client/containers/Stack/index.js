@@ -47,8 +47,8 @@ class Stack extends Component {
             name: item.name || 'UNKNOWN_NAME',
             picture: "http://graph.facebook.com/" + (item.fbUserId || '') + "/picture",
             fbUserId: item.fbUserId
-        }})
-      )
+        }
+      }))
     })
   }
 
