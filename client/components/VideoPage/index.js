@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import style from './style.css'
 import css from '../../../node_modules/react-html5video/dist/ReactHtml5Video.css'
+import {browserHistory} from 'react-router'
 import {
   default as Video,
   Controls,
@@ -15,13 +16,21 @@ import {
 class VideoPage extends Component {
   render() {
     const videoId = this.props.params.videoId;
-    const videoUrl = `/api/turtle_users/video/${videoId}`;
+    const matchId = this.props.params.matchId;
+    const videoUrl = `http://129.31.231.107:9000/api/turtle_users/video/${videoId}`;
     console.log(videoUrl);
     return (
       <div className={style.main}>
         <h1>User video</h1>
-        <Video controls autoPlay loop muted poster="http://www.ryanomancefoundation.com/beta/wp-content/uploads/2016/02/video_placeholder.jpg">
-          <source src={'http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_h264.mov'} type="video/mp4"/>
+        <Video
+          controls
+          autoPlay
+          muted poster="http://www.ryanomancefoundation.com/beta/wp-content/uploads/2016/02/video_placeholder.jpg"
+          onCanPlayThrough={() => {
+              browserHistory.push(`/match/${matchId}/`);
+          }}
+        >
+          <source src={videoUrl} type="video/mp4"/>
           <Overlay/>
           <Controls>
             <Play/>

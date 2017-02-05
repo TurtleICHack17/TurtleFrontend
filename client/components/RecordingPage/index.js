@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import style from './style.css'
-import {captureUserMedia, S3Upload,} from './AppUtils';
+import {captureUserMedia, S3Upload} from './AppUtils';
 import RaisedButton from 'material-ui/RaisedButton';
 import RecordRTC from 'recordrtc';
 
@@ -14,7 +14,7 @@ class RecordingPage extends React.Component {
       recordVideo: null,
       src: null,
       uploadSuccess: null,
-      uploading: false,
+      uploading: false
     };
 
     this.requestUserMedia = this.requestUserMedia.bind(this);
@@ -43,6 +43,11 @@ class RecordingPage extends React.Component {
       this.state.recordVideo = RecordRTC(stream, {type: 'video'});
       this.state.recordVideo.startRecording();
     });
+
+    setTimeout(() => {
+      this.stopRecord();
+    }, 10000);
+
   }
 
   stopRecord() {
@@ -51,6 +56,8 @@ class RecordingPage extends React.Component {
         type: 'video/webm',
         data: this.state.recordVideo.blob,
         id: Math.floor(Math.random() * 90000) + 10000,
+        currentUserId: this.props.params.ourId || '123',
+        matchUserId: this.props.params.matchId || '456',
       }
 
       this.setState({uploading: true});
@@ -59,7 +66,7 @@ class RecordingPage extends React.Component {
         console.log('enter then statement')
         if (success) {
           console.log(success)
-          this.setState({uploadSuccess: true, uploading: false,});
+          this.setState({uploadSuccess: true, uploading: false});
         }
       }, (error) => {
         alert(error, 'error occurred. check your aws settings and try again.')
@@ -79,10 +86,11 @@ class RecordingPage extends React.Component {
           {this.state.uploading
             ? <div>Uploading...</div>
             : null
-}
+          }
           {this.state.uploadSuccess
             ? 'Upload success!'
-            : ''}
+            : ''
+          }
         </div>
         <div className={style.padding}>
           <div className={style.inline}>
