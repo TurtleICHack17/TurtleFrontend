@@ -20,9 +20,11 @@ export function facebookOnResponse(response) {
         gender: response.gender || 'UNKNOWN_GENDER'
       })
     }).then(
-    //  (res) => console.log(res)
+      () => {
+        setTimeout(function(){ browserHistory.push('/stack') }, 1000);
+      }
     )
-    browserHistory.push('/stack')
+
     return {
         type: 'set facebook success',
         fbObject: response

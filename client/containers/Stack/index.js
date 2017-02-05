@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import {browserHistory} from 'react-router'
+import {browserHistory, Link} from 'react-router'
 
 import { connect } from 'react-redux'
 import Header from '../../components/Header'
@@ -11,12 +11,21 @@ import style from './style.css'
 import 'whatwg-fetch'
 import SwipeCards from '../../components/SwipeCards';
 import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class Stack extends Component {
 
 
   componentWillMount() {
+    const {login, actions} = this.props
+    const ourUserId = login.fbObject ? login.fbObject.userID : null
+
+
+    console.log('WILL MOUNT OURUSERID: ' + ourUserId)
+    if (ourUserId) {
+      this.loadCards(ourUserId, actions.appendCards)
+    }
   }
 
   guid() {
@@ -40,7 +49,6 @@ class Stack extends Component {
             fbUserId: item.fbUserId
         }})
       )
-      this.forceUpdate()
     })
   }
 
@@ -57,6 +65,8 @@ class Stack extends Component {
   }
 
   handleRightSwipe(ourUserId, card) {
+    const { actions } = this.props
+    actions.setOtherUserId(card.fbUserId)
     fetch('http://129.31.231.107:9000/api/turtle_users/' + ourUserId + '/swiperight/' + card.fbUserId,
       {
         method: 'POST',
@@ -64,24 +74,28 @@ class Stack extends Component {
           'Content-Type': 'application/json'
         },
         body: "{}"
+      }).then(function(response) {
+        return response.json()
+      }).then((data) => {
+        console.log(data)
+        if (!data.needsVideo) {
+          actions.setVideoUrl(data.videoUrl)
+          browserHistory.push('/video')
+        } else {
+          browserHistory.push('/record')
+        }
       })
-
-    browserHistory.push('/record')
   }
 
   render() {
-
     const { actions, children, login, cards } = this.props
+
+    if(!(login.loggedIn)) {
+      return (<span>Not logged in! <Link to="/">Login screen</Link></span>)
+    }
+
     const ourUserId = login.fbObject ? login.fbObject.userID : null
-    if(login.loggedIn) {
-      console.log('user available')
-      if (cards.length == 0) {
-        this.loadCards(ourUserId, actions.appendCards)
-      }
-    }
-    else {
-      console.log('user unavailable')
-    }
+
     console.log('OURUSERID: ' + ourUserId)
     const swipeHeight = window.innerHeight-80
     const swipeWidth = swipeHeight*0.6
@@ -97,13 +111,14 @@ class Stack extends Component {
           <SwipeCards
             width={swipeWidth}
             height={swipeHeight}
-            cards={cards}
+            cards={cards || []}
             onLeftSwipe={(card) => this.handleLeftSwipe(ourUserId, cards[card])}
             onRightSwipe={(card) => this.handleRightSwipe(ourUserId, cards[card]) }
             />
         </div>
-
+        <RaisedButton label="Reload" primary={true} onClick={() => this.componentWillMount()}/>
       </div>
+
     )
   }
 }

@@ -10,4 +10,20 @@ export function appendCards(cards) {
   }
 }
 
+
+export function setVideoUrl(videoUrl) {
+  return {
+    type: 'set video url',
+    videoUrl
+  }
+}
+
+
+export function setOtherUserId(userId) {
+  return {
+    type: 'set other user id',
+    userId
+  }
+}
+
 //export const facebookOnResponse = createAction('facebook on response')
