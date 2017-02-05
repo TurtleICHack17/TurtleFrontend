@@ -19,6 +19,7 @@ export default React.createClass({
   },
 
   onCardSwipe(card, like) {
+    const userId = this.state.cards[card].fbUserId
     this.state.cards.splice(card, 1);
     this.setState({
       cards: this.state.cards
@@ -30,10 +31,10 @@ export default React.createClass({
     }
 
     if (like && this.props.onRightSwipe) {
-      this.props.onRightSwipe(card)
+      this.props.onRightSwipe(userId)
     }
     if (!like && this.props.onLeftSwipe) {
-      this.props.onLeftSwipe(card)
+      this.props.onLeftSwipe(userId)
     }
   },
 

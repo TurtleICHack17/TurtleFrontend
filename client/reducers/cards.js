@@ -8,7 +8,7 @@ export default function loginReducer(state=initialState, action) {
 
     case 'set swiped':
       return state.map(card => {
-        if (card.fbUserId == action.card.fbUserId) {
+        if (card.fbUserId == action.UserId) {
           card.swiped = true
           return card
         }

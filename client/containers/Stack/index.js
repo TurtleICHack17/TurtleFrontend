@@ -53,7 +53,14 @@ class Stack extends Component {
   }
 
 
-  handleLeftSwipe(ourUserId, card) {
+  handleLeftSwipe(ourUserId, otherUserId) {
+    const { actions, cards } = this.props
+
+    const card = cards.find(card => card.fbUserId == otherUserId)
+    console.log(card)
+
+    const id = card.fbUserId
+
     fetch('http://129.31.231.107:9000/api/turtle_users/' + ourUserId + '/swipeleft/' + card.fbUserId,
       {
         method: 'POST',
@@ -64,9 +71,11 @@ class Stack extends Component {
       })
   }
 
-  handleRightSwipe(ourUserId, card) {
+  handleRightSwipe(ourUserId, otherUserId) {
+    const card = cards.find(card => card.fbUserId == otherUserId)
     const { actions } = this.props
-    actions.setOtherUserId(card.fbUserId)
+    const id = card.fbUserId
+    actions.setOtherUserId(id)
     fetch('http://129.31.231.107:9000/api/turtle_users/' + ourUserId + '/swiperight/' + card.fbUserId,
       {
         method: 'POST',
@@ -107,8 +116,8 @@ class Stack extends Component {
             width={swipeWidth}
             height={swipeHeight}
             cards={cards.filter(card => !card.swiped)}
-            onLeftSwipe={(card) => this.handleLeftSwipe(ourUserId, cards[card])}
-            onRightSwipe={(card) => this.handleRightSwipe(ourUserId, cards[card]) }
+            onLeftSwipe={(otherUserId) => this.handleLeftSwipe(ourUserId, otherUserId)}
+            onRightSwipe={(otherUserId) => this.handleRightSwipe(ourUserId, otherUserId) }
             />
         </div>
         <FlatButton label="Reload" onClick={() => this.componentWillMount()} className={style.reloadButton}/>

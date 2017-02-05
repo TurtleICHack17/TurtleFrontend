@@ -10,10 +10,10 @@ export function appendCards(cards) {
   }
 }
 
-export function setSwiped(card) {
+export function setSwiped(userId) {
   return {
     type: 'set swiped',
-    card
+    userId
   }
 }
 
