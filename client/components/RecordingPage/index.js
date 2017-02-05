@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {browserHistory} from 'react-router'
 import style from './style.css'
-import {captureUserMedia, S3Upload} from './AppUtils';
+import {captureUserMedia, S3Upload} from './appUtils';
 import RaisedButton from 'material-ui/RaisedButton';
 import RecordRTC from 'recordrtc';
 
