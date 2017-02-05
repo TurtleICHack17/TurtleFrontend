@@ -21,12 +21,12 @@ class VideoPage extends Component {
     console.log(videoUrl);
     return (
       <div className={style.main}>
-        <h1>User video</h1>
+        <div className={style.videoContainer}>
         <Video
           controls
           autoPlay
           muted poster="http://www.ryanomancefoundation.com/beta/wp-content/uploads/2016/02/video_placeholder.jpg"
-          onCanPlayThrough={() => {
+          onEnded={() => {
               browserHistory.push(`/match/${matchId}/`);
           }}
         >
@@ -39,6 +39,13 @@ class VideoPage extends Component {
             <Fullscreen/>
           </Controls>
         </Video>
+      </div>
+
+      <div className={style.addtext}>
+        <h2>
+          Watch this!
+        </h2>
+      </div>
       </div>
     );
   }
