@@ -1,9 +1,11 @@
 .main {
   text-align: center;
+  height: 100%;
+  background: linear-gradient(to bottom, #00bcd6 0%,#0091c6 100%);
+  overflow: auto;
 }
 .inline {
-  display: inline;
-  margin: 1em;
+  display: inline-block;
 }
 
 .padding {
@@ -11,4 +13,14 @@
 }
 video {
   width: 100%
+}
+
+
+.videoContainer {
+  margin-top: 48px;
+}
+
+.addtext {
+  margin-top: 50px;
+  color: #FFF;
 }

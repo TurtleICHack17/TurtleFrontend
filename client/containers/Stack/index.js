@@ -11,7 +11,7 @@ import style from './style.css'
 import 'whatwg-fetch'
 import SwipeCards from '../../components/SwipeCards';
 import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 
 class Stack extends Component {
@@ -102,11 +102,6 @@ class Stack extends Component {
     console.log(cards)
     return (
       <div className={style.page} key={this.guid()}>
-        <AppBar
-            title="turtle."
-            showMenuIconButton={false}
-          />
-
         <div className={style.stackContainer} style={{width: swipeWidth, height: swipeHeight}}>
           <SwipeCards
             width={swipeWidth}
@@ -116,7 +111,7 @@ class Stack extends Component {
             onRightSwipe={(card) => this.handleRightSwipe(ourUserId, cards[card]) }
             />
         </div>
-        <RaisedButton label="Reload" primary={true} onClick={() => this.componentWillMount()}/>
+        <FlatButton label="Reload" onClick={() => this.componentWillMount()} className={style.reloadButton}/>
       </div>
 
     )

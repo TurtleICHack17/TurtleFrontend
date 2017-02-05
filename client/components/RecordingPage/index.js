@@ -40,6 +40,10 @@ class RecordingPage extends React.Component {
   }
 
   startRecord() {
+    this.setState({
+      recording: true
+    })
+
     captureUserMedia((stream) => {
       this.state.recordVideo = RecordRTC(stream, {type: 'video'});
       this.state.recordVideo.startRecording();
@@ -52,6 +56,10 @@ class RecordingPage extends React.Component {
   }
 
   stopRecord() {
+    this.setState({
+      recording: false
+    })
+
     this.state.recordVideo.stopRecording(() => {
       let params = {
         type: 'video/webm',
@@ -81,9 +89,10 @@ class RecordingPage extends React.Component {
   }
 
   render() {
+    const recording = this.state.recording
     return (
       <div className={style.main}>
-        <div>
+        <div className={style.videoContainer}>
           <video autoPlay muted src={this.state.src}/>
         </div>
         <div>
@@ -98,10 +107,20 @@ class RecordingPage extends React.Component {
         </div>
         <div className={style.padding}>
           <div className={style.inline}>
-            <RaisedButton primary={true} onClick={this.startRecord} label="Start Record"/>
+            {!recording ?
+              <RaisedButton primary={true} onClick={this.startRecord} label="Start Record"/> : null
+            }
+
           </div>
           <div className={style.inline}>
-            <RaisedButton primary={true} onClick={this.stopRecord} label="Stop Record"/>
+            {recording ?
+            <RaisedButton primary={true} onClick={this.stopRecord} label="Stop Record"/> : null
+            }
+          </div>
+          <div className={style.addtext}>
+            <h2>
+              Be nice, say something witty!
+            </h2>
           </div>
         </div>
       </div>
