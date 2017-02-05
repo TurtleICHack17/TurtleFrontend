@@ -111,7 +111,7 @@ class Stack extends Component {
           <SwipeCards
             width={swipeWidth}
             height={swipeHeight}
-            cards={cards || []}
+            cards={cards.filter(card => !card.swiped)}
             onLeftSwipe={(card) => this.handleLeftSwipe(ourUserId, cards[card])}
             onRightSwipe={(card) => this.handleRightSwipe(ourUserId, cards[card]) }
             />

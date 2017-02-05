@@ -10,6 +10,13 @@ export function appendCards(cards) {
   }
 }
 
+export function setSwiped(card) {
+  return {
+    type: 'set swiped',
+    card
+  }
+}
+
 
 export function setVideoUrl(videoUrl) {
   return {

@@ -134,7 +134,7 @@ export const Card = React.createClass({
   cardInfo() {
     return <div style={this.cardInfoStyle()}>
       <div style={{ display: 'inline-block' }}>
-        <span><strong>{this.props.name},</strong> {this.props.age}</span>
+        <span><strong>{this.props.name}</strong> {this.props.age}</span>
       </div>
       <div style={{ display: 'inline-block', float: 'right' }}>
         <span style={{ color: '#f78266', marginRight: '20px' }}>
