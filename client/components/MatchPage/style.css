@@ -1,3 +1,14 @@
 .main {
+  padding-top: 40px;
+  padding: 8px;
   text-align: center;
+  background: linear-gradient(to bottom, #ffae00 0%,#b55700 100%);
+  color: #FFF;
+  height: 100%;
+}
+
+
+.avatar {
+  margin-top: 35px;
+  border: 3px solid white;
 }
