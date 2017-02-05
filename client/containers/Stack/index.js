@@ -45,7 +45,7 @@ class Stack extends Component {
         appendCards(data.map((item) => {
           return {
             name: item.name || 'UNKNOWN_NAME',
-            picture: "http://graph.facebook.com/" + (item.fbUserId || '') + "/picture",
+            picture: "http://graph.facebook.com/" + (item.fbUserId || '') + "/picture?type=large",
             fbUserId: item.fbUserId
         }
       }))
