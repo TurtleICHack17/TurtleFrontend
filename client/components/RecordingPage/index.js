@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {browserHistory} from 'react-router'
 import style from './style.css'
 import {captureUserMedia, S3Upload} from './AppUtils';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -67,6 +68,9 @@ class RecordingPage extends React.Component {
         if (success) {
           console.log(success)
           this.setState({uploadSuccess: true, uploading: false});
+          setTimeout(() => {
+            browserHistory.push(`/stack`);
+          }, 1000);
         }
       }, (error) => {
         alert(error, 'error occurred. check your aws settings and try again.')
