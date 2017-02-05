@@ -56,8 +56,8 @@ class RecordingPage extends React.Component {
         type: 'video/webm',
         data: this.state.recordVideo.blob,
         id: Math.floor(Math.random() * 90000) + 10000,
-        currentUserId: this.state.currentUserId || '123',
-        matchUserId: this.state.matchUserId || '456',
+        currentUserId: this.props.params.ourId || '123',
+        matchUserId: this.props.params.matchId || '456',
       }
 
       this.setState({uploading: true});

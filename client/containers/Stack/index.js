@@ -80,9 +80,9 @@ class Stack extends Component {
         console.log(data)
         if (!data.needsVideo) {
           actions.setVideoUrl(data.videoUrl)
-          browserHistory.push('/video')
+          browserHistory.push(`/video/${data.videoUrl}/${card.fbUserId}`)
         } else {
-          browserHistory.push('/record')
+          browserHistory.push(`/record/${card.fbUserId}/${ourUserId}`)
         }
       })
   }
