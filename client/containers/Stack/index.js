@@ -72,8 +72,9 @@ class Stack extends Component {
   }
 
   handleRightSwipe(ourUserId, otherUserId) {
+    const { actions, cards} = this.props
     const card = cards.find(card => card.fbUserId == otherUserId)
-    const { actions } = this.props
+
     const id = card.fbUserId
     actions.setOtherUserId(id)
     fetch('http://129.31.231.107:9000/api/turtle_users/' + ourUserId + '/swiperight/' + card.fbUserId,
